@@ -1,0 +1,39 @@
+z-index is the CSS property that controls the stacking order of overlapping elements on a page. An element with a higher z-index value will appear in front of an element with a lower z-index value. The property is called “z-index” because it sets the order of elements along the z-axis.
+
+
+
+
+In the provided code, the useState and useEffect hooks from React are used to manage state and perform side effects.
+
+useState:
+
+const [item, setItem] = useState({name: "all"});: This line declares a state variable item using the useState hook. The initial state is set to an object with a name property set to "all". The setItem function is used to update the state.
+
+const [projects, setProjects] = useState([]);: This line declares another state variable projects with an initial state of an empty array. The setProjects function is used to update this state.
+
+const [active, setActive] = useState(0);: This line declares a state variable active with an initial state of 0. The setActive function is used to update this state.
+
+useEffect:
+
+The useEffect hook is used to perform side effects in a functional component. In this case, it is used to update the projects state based on the changes in the item state.
+
+javascript
+Copy code
+useEffect(() => {
+    if (item.name === "all") {
+        setProjects(projectsData);
+    } else {
+        const newProjects = projectsData.filter((project) => {
+            return project.category === item.name;
+        });
+        setProjects(newProjects);
+    }
+}, [item]);
+This useEffect runs whenever the item state changes. If the item.name is "all," it sets the projects state to the entire list of projects (projectsData). Otherwise, it filters the projects based on the category specified in the item.name and updates the projects state accordingly. The dependency array [item] ensures that the effect runs whenever the item state changes.
+
+
+
+
+
+
+
